@@ -27,12 +27,12 @@ public class WaypointFollow : MonoBehaviour
         this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotSpeed); // Ao se aproximar do ponto, ele começará a rotacionar em direção ao próximo de maneira suave, 
         //graças ao Quaternion.Slerp, dando uma movimentação mais natural ao objeto, junto com o LookRotation e o rotSpeed
 
-        if(direction.magnitude < accuracy) //direção
+        if(direction.magnitude < accuracy) //se a direção e magnitude forem menores que o ponto de aproximação, accuracy, o objeto então caminhará para o próximo ponto
         {
-            currentWP++;
-            if(currentWP >= waypoints.Length) //array 
+            currentWP++; //continuação da movimentação para o próximo ponto
+            if(currentWP >= waypoints.Length) //caso o valor inicial seja maior ou igual aos pontos que meu objeto percorrerá
             {
-                currentWP = 0;
+                currentWP = 0; //valor inicial igual a zero
             }
         }
         this.transform.Translate(0, 0, speed * Time.deltaTime); //Utilização do Time.deltaTime devido ao LateUpdate, para que possa ser feita a atualização, quadro após quadro a movimentação do objeto
